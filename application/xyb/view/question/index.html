@@ -1,0 +1,160 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <style>
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table> tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a>题目列表</a></li>
+                                        <li><a href="<{:url('Question/add',['tag_id'=>$tag_id])}>">添加题目</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="form-horizontal" method="post" action="<{:url('Test/index',['tag_id'=>$tag_id])}>">
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <select name="cat_id">
+                                                    <option value="0" {if condition="$cat_id eq 0"}selected="selected"{/if}>全部</option>
+                                                    {volist name='cat_list' id='c'}
+                                                    <option value="<{$c.id}>" {if condition="$cat_id eq $c.id"}selected="selected"{/if}><{$c.cat_name}></option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2"  style="margin-left: -75px">
+                                                <button type="submit" class="btn-searchs">搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="js-ajax-form" method="post">
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>问题</th>
+                                                <th>选项</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                               {volist name='arr' id='v'}
+                                                 <tr>
+                                                     <td><{$v.id}></td>
+                                                     <td><{$v.title}></td>
+                                                     <td>
+                                                         {volist name='$v.answer_list' id='vv'}
+                                                         <{$vv.answer}><br/>
+                                                         {/volist}
+                                                     </td>
+                                                     <td>
+                                                         <a  class="aset" href="<{:url('Question/edit',['tag_id'=>$tag_id,'id'=>$v.id])}>">编辑</a>
+                                                         <a  class="aset" onclick="del(<{$v.id}>)">删除</a>
+                                                     </td>
+                                                 </tr>
+                                               {/volist}
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                          <{$page}>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script src="__PUBLIC__xyb/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__xyb/js/bootstrap.min.js"></script>
+<script>
+    //删除
+    function del(id){
+        layer.confirm('确定删除？',{'icon':3,'title':'删除'},function(data){
+            $.post('__URL__Question/del',{id:id},function(res){
+                if(res.state==1){
+                    layer.msg(res.info, {
+                        icon: 1,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }else{
+                    layer.msg(res.info, {
+                        icon: 2,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }
+            })
+        })
+    }
+
+    //添加课时弹窗
+    $('.iframe').click(function() {
+        var title = $(this).attr('title');
+        var url = $(this).attr('value');
+
+        $('.bg_div').fadeIn();
+        layer.open({
+            title: title,
+            type: 2,
+            area: ['400px', '300px'],
+            fix: true, //固定
+            maxmin: false,
+            scrollbar: false,
+            shade: 0,
+            content: url,
+            end: function () {
+                $('.bg_div').fadeOut();
+            }
+        });
+    })
+</script>

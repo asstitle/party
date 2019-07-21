@@ -1,0 +1,149 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <style>
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table> tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a>分类列表</a></li>
+                                        <li><a href="<{:url('test/add',['tag_id'=>$tag_id])}>">添加分类</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="form-horizontal" method="post" action="<{:url('Test/index',['tag_id'=>$tag_id])}>">
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                                <input name="cat_name" type="text" value="<{$cat_name}>" style="height: 30px;" placeholder="分类名称"/>
+                                            </div>
+                                            <div class="col-sm-2"  style="margin-left: -25px">
+                                                <button type="submit" class="btn-searchs">搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="js-ajax-form" method="post">
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>分类名称</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                               {volist name='info' id='i'}
+                                               <tr>
+                                                   <td><{$i.id}></td>
+                                                   <td><{$i.cat_name}></td>
+                                                   <td>
+                                                       <a class="aset iframe" value="<{:url('test/edit',['tag_id'=>$tag_id,'id'=>$i.id])}>" title="编辑">编辑</a>
+                                                       <a class="aset" onclick="del(<{$i.id}>)">删除</a>
+                                                   </td>
+                                               </tr>
+                                               {/volist}
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script src="__PUBLIC__xyb/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__xyb/js/bootstrap.min.js"></script>
+<script>
+    //删除
+    function del(id){
+        layer.confirm('确定删除？',{'icon':3,'title':'删除'},function(data){
+            $.post('__URL__test/del',{id:id},function(res){
+                if(res.state==1){
+                    layer.msg(res.info, {
+                        icon: 1,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }else{
+                    layer.msg(res.info, {
+                        icon: 2,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }
+            })
+        })
+    }
+
+    //添加课时弹窗
+    $('.iframe').click(function() {
+        var title = $(this).attr('title');
+        var url = $(this).attr('value');
+
+        $('.bg_div').fadeIn();
+        layer.open({
+            title: title,
+            type: 2,
+            area: ['400px', '300px'],
+            fix: true, //固定
+            maxmin: false,
+            scrollbar: false,
+            shade: 0,
+            content: url,
+            end: function () {
+                $('.bg_div').fadeOut();
+            }
+        });
+    })
+</script>

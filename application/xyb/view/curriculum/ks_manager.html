@@ -1,0 +1,171 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <style>
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table> tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            text-align: center;
+        }
+        .ispan{
+            display: inline-block;
+            width: 60px;
+            height:30px;
+            line-height: 30px;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+            cursor:pointer;
+        }
+        .ispans{
+            display: inline-block;
+            width: 60px;
+            height:30px;
+            line-height: 30px;
+            color: #fff;
+            background-color: red;
+            border-color: #2e6da4;
+            cursor:pointer;
+        }
+    </style>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a>课时列表</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <button class="btn btn-sm btn-primary iframe" value="<{:url('Curriculum/add_ks',['kid'=>$kid])}>" cate="1">
+                                        <i class="icon-plus align-top bigger-125"></i>
+                                        新增
+                                    </button>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="js-ajax-form" method="post">
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>标题</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                              {volist name='info' id='v'}
+                                                <tr>
+                                                    <td><{$v.id}></td>
+                                                    <td><a value="<{:url('Curriculum/edit_ks',['id'=>$v.id])}>" cate="2" class="iframe" style="cursor: pointer"><{$v.title}></a></td>
+                                                    <td>
+                                                        <span class="iframe ispan" value="<{:url('Curriculum/edit_ks',['id'=>$v.id])}>" cate="2">
+                                                        编辑
+                                                       </span>
+                                                        <span class="ispans" onclick="del_ks(<{$v.id}>)">
+                                                        删除
+                                                       </span>
+                                                    </td>
+                                                </tr>
+                                              {/volist}
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                        <{$page}>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script src="__PUBLIC__xyb/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__xyb/js/bootstrap.min.js"></script>
+<script>
+    //删除
+    function del_ks(id){
+        layer.confirm('确定删除？',{'icon':3,'title':'删除'},function(data){
+            $.post('__URL__Curriculum/del_ks',{id:id},function(res){
+                if(res.state==1){
+                    layer.msg(res.info, {
+                        icon: 1,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }else{
+                    layer.msg(res.info, {
+                        icon: 2,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }
+            })
+        })
+    }
+    //添加课时弹窗
+    $('.iframe').click(function() {
+        var type = $(this).attr('cate');
+        var url = $(this).attr('value');
+        if(type==1){
+            var title = '新增课时';
+        }else{
+            var title = '编辑课时';
+        }
+
+        $('.bg_div').fadeIn();
+        layer.open({
+            title: title,
+            type: 2,
+            area: ['70%', '90%'],
+            fix: true, //固定
+            maxmin: false,
+            shade: 0,
+            content: url,
+            end: function () {
+                $('.bg_div').fadeOut();
+            }
+        });
+    })
+
+</script>

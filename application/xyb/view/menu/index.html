@@ -1,0 +1,86 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a>菜单列表</a></li>
+                                        <li><a href="<{:url('menu/add')}>">添加菜单</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="js-ajax-form" action="{:url('Menu/listOrder')}" method="post">
+                                        <div class="table-actions">
+                                            <button class="btn btn-primary btn-sm js-ajax-submit" type="submit">排序</button>
+                                        </div>
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
+                                            <thead>
+                                            <tr>
+                                                <th width="80">排序</th>
+                                                <th width="50">ID</th>
+                                                <th>菜单名称</th>
+                                                <th>操作</th>
+                                                <th width="80">状态</th>
+                                                <th width="180">操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <{$category}>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script src="__PUBLIC__xyb/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__xyb/js/wind.js"></script>
+<script src="__PUBLIC__xyb/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        Wind.css('treeTable');
+        Wind.use('treeTable', function() {
+            $("#menus-table").treeTable({
+                indent : 20
+            });
+        });
+    });
+</script>

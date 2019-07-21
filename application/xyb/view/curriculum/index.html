@@ -1,0 +1,169 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <style>
+        th {
+            text-align: center;
+            vertical-align: middle;
+        }
+       .table> tbody > tr > td, .table > tfoot > tr > td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: middle;
+           text-align: center;
+        }
+    </style>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a>课程列表</a></li>
+                                        <li><a href="<{:url('curriculum/add',['tag_id'=>$tag_id])}>">新建课程</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="form-horizontal" method="post" action="<{:url('Curriculum/index',['tag_id'=>$tag_id])}>">
+                                        <div class="form-group">
+                                            <div class="col-sm-2">
+                                               <select name="p_id" id="p_id" style="width: 80%;">
+                                                   <option value="0">全部</option>
+                                                   {volist name='p_list' id='p'}
+                                                   <option value="<{$p.id}>"><{$p.name}></option>
+                                                   {/volist}
+                                               </select>
+                                            </div>
+                                            <div class="col-sm-2"  style="margin-left: -50px;">
+                                                <select name="p_next_id" id="p_next_id" style="width: 80%;">
+                                                    <option value="0">全部</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2"  style="margin-left: -50px">
+                                                <button type="submit" class="btn-searchs">搜索</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="js-ajax-form" method="post">
+                                        <table class="table table-hover table-bordered table-list" id="menus-table">
+                                            <thead>
+                                            <tr>
+                                                <th>课程图片</th>
+                                                <th>课程名称</th>
+                                                <th>课程简介</th>
+                                                <th>浏览量</th>
+                                                <th>学习人数</th>
+                                                <th>创建人</th>
+                                                <th>分数</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                {volist name='info' id='i'}
+                                                <tr>
+                                                    <td><img src="__UPLOAD__<{$i.pic}>" style="margin: 10px;" width="80px" height="80px"/></td>
+                                                    <td><{$i.curriculum_name}></td>
+                                                    <td><{$i.curriculum_intro}></td>
+                                                    <td><{$i.browse_num}></td>
+                                                    <td><{$i.study_num}></td>
+                                                    <td><{$i.create_name}></td>
+                                                    <td><{$i.curriculum_score}></td>
+                                                    <td>
+                                                        <a href="<{:url('Curriculum/ks_manager',['tag_id'=>$tag_id,'kid'=>$i.id])}>" class="aset">课时管理</a>
+                                                        <a href="<{:url('Curriculum/edit',['tag_id'=>$tag_id,'kid'=>$i.id])}>" class="aset">编辑</a>
+                                                        <a onclick="del_info(<{$i.id}>)" class="aset">删除</a>
+                                                    </td>
+
+                                                </tr>
+                                                {/volist}
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                        <{$page}>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script src="__PUBLIC__xyb/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__xyb/js/bootstrap.min.js"></script>
+<script>
+    //删除
+    function del_info(id){
+        layer.confirm('该课程及课程内容将一并删除,确定？',{'icon':3,'title':'删除'},function(data){
+            $.post('__URL__Curriculum/delete_info',{id:id},function(res){
+                if(res.state==1){
+                    layer.msg(res.info, {
+                        icon: 1,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }else{
+                    layer.msg(res.info, {
+                        icon: 2,
+                        time: 5000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        parent.location.reload();
+                    },800);
+                }
+            })
+        })
+    }
+    //切换分类
+    $("#p_id").change(function(){
+        var p_id=$("#p_id").val();
+        if(p_id>0){
+            var p_next_id=$("#p_next_id").empty();
+            var str='';
+            $.post('__URL__curriculum/get_cat',{p_id:p_id},function(data){
+                if(data){
+                    for(var i=0;i<data.info.length;i++){
+                        str+="<option value='"+data.info[i].id+"'>'"+data.info[i].name+"'</option>";
+                    }
+                    $("#p_next_id").append(str);
+                }
+            })
+        }else{
+            $("#p_next_id").empty();
+            $("#p_next_id").append('<option value="0">全部</option>');
+        }
+    })
+</script>

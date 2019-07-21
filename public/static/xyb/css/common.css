@@ -1,0 +1,55 @@
+.btn-add {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 18px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.btn-searchs{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 18px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.cat_info {
+    font-size: 15px !important;
+    height: 24px;
+    color: #348bda;
+    cursor: pointer;
+}
+/*************閬僵灞�****************/
+.bg_div {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 13;
+    display: none;
+}
+.aset{
+    width: 80px;
+    height:30px;
+    line-height:30px;
+    border:1px solid #dddddd;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration:none;
+}

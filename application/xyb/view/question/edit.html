@@ -1,0 +1,180 @@
+{include file="Public/head"/}
+<body class="no-skin">
+{include file="Public/header"/}
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    {include file="Public/sidebar"/}
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            {include file="Public/breadcrumbs" /}
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+
+                {include file="Public/set"/}
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs">
+                                        <li><a href="<{:url('Question/index',['tag_id'=>$tag_id])}>">题目列表</a></li>
+                                        <li class="active"><a>添加题目</a></li>
+                                    </ul>
+                                    <div style="margin-top: 20px;"></div>
+                                    <form class="form-horizontal margin-top-20" action="" method="post" onsubmit="return check()" id="forms">
+                                        <div class="form-group">
+                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>所属类别</label>
+                                            <div class="col-md-4 col-sm-4">
+                                                <select name="cat_id" id="cat_id">
+                                                    <option value="0" {if condition="$res.cat_id eq 0"}selected="selected"{/if}>请选择</option>
+                                                    {volist name='info' id='v'}
+                                                    <option value="<{$v.id}>" {if condition="$res.cat_id eq $v.id"}selected="selected"{/if}><{$v.cat_name}></option>
+                                                    {/volist}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>问题名称</label>
+                                            <div class="col-md-4 col-sm-4">
+                                                <input type="text" class="form-control"  name="title" value="<{$res.title}>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" class="answer_list">
+                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red">*</span>答案选项</label>
+                                            <div class="col-md-4 col-sm-4">
+                                                <span style="display: inline-block;width: 60px;height:30px;line-height:30px; background-color: buttonface;colore:buttontext;cursor:pointer;text-align: center" onclick="newitem()">新建答案</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group" >
+                                            <label for="input-name" class="col-sm-2 control-label"><span style="color: red"></span></label>
+                                            <div class="col-md-4 col-sm-4" id="items">
+                                                {if condition='$result'}
+                                                 {volist name='result' id='r'}
+                                                    <label><input name='selectradio' type='radio' {if condition="$r.is_answer eq 1"}checked="checked"{/if}/><input class='item' type='text' style='width:350px' value="<{$r.answer}>"  data-value="<{$r.id}>"/></label><br><br>
+                                                 {/volist}
+                                                {/if}
+                                            </div>
+                                        </div>
+                                        <input type="hidden" value="" name='items_num' id="items_num"/>
+                                        <input type="hidden" value="<{$id}>" name='id'/>
+                                        <input type="hidden" value="" name='ner' id="ner"/>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <span  class="btn-add">修改</span>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <!-- /.tab-content -->
+                                </div><!-- /.tabbable -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    {include file="Public/footer"/}
+
+</div><!-- /.main-container -->
+
+{include file="Public/footerjs"/}
+<!-- inline scripts related to this page -->
+</body>
+</html>
+<script type="application/javascript">
+    $(".btn-add").click(function(){
+        var tag_id='<{$tag_id}>';
+        var title=$("input[name=title]").val();
+        var cat_id=$("#cat_id").val();
+        if(cat_id==0){
+            layer.msg('请选择分类', {
+                icon: 0,
+                time: 2000 ,//2秒关闭（如果不配置，默认是3秒）
+                anim: 6
+            });
+            return false;
+        }
+        if(title==''){
+            layer.msg('请填写问题名称', {
+                icon: 0,
+                time: 2000 ,//2秒关闭（如果不配置，默认是3秒）
+                anim: 6
+            });
+            return false;
+        }
+        //所有选项
+        var num=0;
+        var ne='';
+        $("#items .item").each(function(index){
+            num++;
+            $(this).attr("name","item"+index);
+            $(this).prev().val("item"+index);
+            ne+="item"+index+'='+$(this).attr("data-value")+'&'
+        });
+        $('#ner').val(ne);
+        $('#items_num').val(num);
+        $("#itemnum").val($("#items .item").length);
+        //正确答案
+        var selectradio=$("#items input[type='radio']:checked");
+        if(selectradio.length==0){
+            layer.msg('请选择一个正确答案', {
+                icon: 0,
+                time: 2000 ,//2秒关闭（如果不配置，默认是3秒）
+                anim: 6
+            });
+            return;
+        }
+        var selectname=selectradio.next().attr("name");
+        $("#selectradio").val(selectname);
+        //提交表单
+        $.ajax({
+            type:"post",
+            url:"__URL__Question/edit_post/tag_id/"+tag_id,
+            data:$("#forms").serialize(),
+            dataType:"json",
+            success:function(data){
+                if(data.state==1){
+                    layer.msg(data.info, {
+                        icon: 1,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                    });
+                    setTimeout(function(){
+                        window.location.href="__URL__Question/index/tag_id/"+tag_id;
+                    },500);
+                }else{
+                    layer.msg(data.info, {
+                        icon: 2,
+                        time: 2000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+
+                    });
+                    setTimeout(function(){
+                        window.location.reload();
+                    },500);
+                }
+
+            }
+        });
+
+
+    });
+    //追加
+    function newitem(){
+        $("#items").append($("<label><input name='selectradio' type='radio'/><input class='item' type='text' style='width:350px'/></label><br><br>"));
+    }
+</script>
