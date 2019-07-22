@@ -1,0 +1,36 @@
+.footer{
+	float:left;
+	width:100%;
+	height:90px;
+	margin-top:5%;
+	background-color:#333;
+	text-align:center;
+	line-height:90px;
+	color:#FFF;
+}
+.body-box{
+	max-width:1000px;
+	padding-top:80px;
+	margin:0 auto;
+}
+.sketch-page{
+	width:100%;
+	background: rgb(254,241,191);
+	padding:20px 5%;
+	margin:0 auto;
+}
+.video-box{
+	width:100%;
+	height:400px;
+}
+.download-file, .course-title {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@media(max-width: 768px){
+
+.footer{
+	display: none;
+}
+}

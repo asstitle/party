@@ -6,8 +6,16 @@ use think\Controller;
 
 class Index extends Controller
 {
+    //首页
    public function index(){
-     print_r($_SERVER);
-
+       return $this->fetch();
+   }
+   //列表页
+   public function lists(){
+     return $this->fetch();
+   }
+   //详情页
+   public function details(){
+       return $this->fetch();
    }
 }

@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1,user-scalable=no">
+
+    <!--<link href="/Public/Css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/header.css" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Css/header.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/xuedeng.css" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Css/xuedeng.css" />
+    <script type="text/javascript" src="__PUBLIC__home/Js/jquery-1.8.2.min.js" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__home/Js/bootstrap.min.js" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__home/Js/jquery.cookie.js" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Js/jquery.cookie.js"></script>
+    <title>登录</title>
+    <script>
+        $(function(){
+            $('#s').click(function(){                         //搜索框变大
+                $('.head_si').animate({width:"12%"},300);
+            });
+            $('#s').blur(function(){
+                $('.head_si').animate({width:"7%"},300);
+            });
+
+            var h = $('.list_one li').height();             //手机  登陆 、个人中心
+            $('.list_one li').css({"line-height":"h"});
+
+            var winWidth = $(window).width();
+            if(winWidth > 768) {
+                $('.user').mouseover(function(){
+                    $('.phone_log').show();
+                })
+
+                $('.user').mouseleave(function(){
+                    $('.phone_log').hide();
+                })
+            }
+            else {
+                $('.user').click(function(){
+                    $('.phone_log').show();
+                    $('#all_log').show();
+                })
+                $('#all_log').click(function(){
+                    $('.phone_log').hide();
+                    $('#all_log').hide();
+                })
+            }
+
+
+            $('.bar').click(function(){  //手机  显示首页、在线测试
+                $('#left').show();
+                $('#all').show();
+                $('#all').css({overflow:'hidden'});
+                $('.top').css({left:'60%'});
+                $('.banner').css({left:'60%'});
+                $('.phone_top').css({left:'60%'});
+                $('.phone_ban').css({left:'60%'});
+                $('.sec').css({left:'60%'});
+                $('.footer').css({left:'60%'});
+            })
+            $('#all').click(function(){
+                $('#left').hide();
+                $('#all').hide();
+                $('.top').css({left:'0%'});
+                $('.banner').css({left:'0%'});
+                $('.phone_top').css({left:'5%'});
+                $('.phone_ban').css({left:'5%'});
+                $('.sec').css({left:'0%'});
+                $('.footer').css({left:'0%'});
+            })
+
+
+            var width = document.body.clientWidth;
+            if(width < 786)	{
+                var phoneid = $('#hid_id').val();
+                if(phoneid > 0){
+                    location.href="../Tec/tec.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Tec/tec.html*/;
+                }
+            }
+
+
+        })
+
+    </script>
+</head>
+<div id="zover" onclick="hide()"></div>
+
+<body style="background-color:#efeeec">
+<input type="hidden" id="hid_id" value="" />
+<div id="left">
+    <form action="" method="get">
+        <input name="" type="text" placeholder="搜索" />
+    </form>
+    <ul>
+        <li><a href="../Index/index.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Index/index.html">首页</a></li>
+        <li class="test"><a href="../Test/index.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Test/index.html">在线测试</a></li>
+    </ul>
+</div>
+<div id="all"></div>
+<div id="all_log"></div>
+<div class="top">                             <!--顶部开始-->
+    <div class="bar"><i class="glyphicon glyphicon-align-justify"></i></div>
+    <div class="head_yi">鄂托克前旗党建教育平台-党员教育</div>
+    <div class="head_er"><a href="../Index/index.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Index/index.html">首页</a></div>
+    <div class="head_san test"><a href="../Test/index.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Test/index.html" target="_blank">在线测试</a></div>
+    <div class="head_sans test"><a href="../Study/study.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Study/study.html" target="_blank">党员学习情况</a>
+    </div>
+    <div class="user"><i class="glyphicon glyphicon-user user"></i></div>
+    <!-- 网页登陆-->
+    <div class="deng"><a href="xuedeng.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Deng/xuedeng.html">登录</a></div>
+    <!-- <div class="head_si">
+        <input type="text" class="" placeholder="搜索" name="s" id="s">
+        <span class="glyphicon glyphicon-search"></span>
+    </div> -->
+    <div style="clear:both;"></div>
+    <ul class="phone_log">                <!--   手机  下拉菜单-->
+        <li><a href="xuedeng.html" tppabs="http://zaixiankaohe.12371.ac.cn/index.php/Home/Deng/xuedeng.html">登陆</a></li>
+    </ul>
+</div>	                                <!--顶部的结束-->
+<div class="by"><!--bod体的开始-->
+    <div class="sec">
+
+        <div class="hide">
+            <div id="deng">登录账号</div>
+            <div class="hide3" >
+                <img class="input-icon" src="__PUBLIC__home/Images/1_03.png" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Images/1_03.png"/>
+                <input type="text" name="tels" id="tels" placeholder="请输入身份账号" style="padding-left:5px;"/>
+                <span id="tels_span" class="tels_span"></span>
+            </div>
+            <div class="hide4">
+                <img class="input-icon" src="__PUBLIC__home/Images/2_06.png" tppabs="http://zaixiankaohe.12371.ac.cn/Public/Images/2_06.png"/>
+                <input type="password" name="pass" id="pass" placeholder="请输入密码" style=" padding-left:5px;"/>
+                <span id="pass_span" class="pass_span"></span>
+            </div>
+
+            <div class="hide6"><input type="button" id="butt" value="登 录" /></div>
+            </form>
+
+        </div>
+    </div>
+
+</div><!--bod的结束-->
+
+
+</body>
+
+<script>
+
+    //表单验证
+    var regtel = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;         //验证身份证号号码
+    var reg_pass = /^[a-zA-Z0-9]{6,12}$/;  //验证密码
+    <!--验证身份证号-->
+    $("#tels").blur(function(){
+        if(this.value == '')
+        {
+            $("#tels_span").html("身份证号不能为空！");
+        }else{
+            var i = regtel.test($("#tels").val());
+            if(i)
+            {
+                $("#tels_span").html("<font style='color:green;'>√</font>");
+            }
+
+        }
+    })
+    <!--验证密码-->
+    $("#pass").blur(function(){
+        if(this.value == '')
+        {
+            $("#pass_span").html("密码不能为空！");
+        }else{
+            var k = reg_pass.test($("#pass").val());
+            if(k)
+            {
+                $("#pass_span").html("<font style='color:green;'>√</font>");
+            }
+
+        }
+    })
+</script>
+<script>
+    $("#butt").click(function(){
+        var tels = $("input[name=tels]").val();
+        var pass = $("input[name=pass]").val();
+
+        $.ajax({
+            type:'POST',
+            url:'/index.php/Home/Deng/handeng',
+            data:'tels='+tels+'&pass='+pass,
+            success:function(mess){
+                if(mess == 1) {
+                    location.href="../Tec/tec.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Tec/tec.html*/;
+                } else {
+                    alert(mess)
+                }
+            }
+        })
+    });
+    $(window).keydown(function(e){
+        if(e.keyCode == 13) {
+            $("#butt").click();
+        }
+    });
+
+    function sho()
+    {
+
+        var login = document.getElementById('zc');
+        var over = document.getElementById('zover');
+
+        login.style.display = "block";
+        over.style.display = "block";
+    }
+    function hide()
+    {
+        var login = document.getElementById('zc');
+        var over = document.getElementById('zover');
+        login.style.display = "none";
+        over.style.display = "none";
+    }
+
+
+    $(".you-yi").click(function(){
+        var e = $(this).index();
+
+        $(".you-yi").eq(e).css({'backgroundColor':'#cf010e','color':'#fff'}).siblings(".you-yi").css({'backgroundColor':'#fff','color':'#666'});
+
+    })
+
+
+    $(".touxiang").mouseover(function(){
+        $("#youce").show();
+
+    })
+    $(".touxiang").mouseleave(function(){
+        $("#youce").hide();
+    })
+</script>
+
+</html>
