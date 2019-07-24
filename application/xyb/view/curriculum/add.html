@@ -203,7 +203,7 @@
             $.post('__URL__curriculum/get_cat',{p_id:p_id},function(data){
                if(data){
                    for(var i=0;i<data.info.length;i++){
-                       str+="<option value='"+data.info[i].id+"'>'"+data.info[i].name+"'</option>";
+                       str+="<option value='"+data.info[i].id+"'>"+data.info[i].name+"</option>";
                    }
                    $("#p_next_id").append(str);
                }

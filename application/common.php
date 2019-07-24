@@ -1,4 +1,5 @@
 <?php
+use think\Db;
 /**
  * 检查权限
  * @param $userId  int        要检查权限的用户 ID
@@ -25,4 +26,11 @@ function xyb_auth_check($userId, $name = null, $relation = 'or')
         $name       = strtolower($module . "/" . $controller . "/" . $action);
     }
     return $authObj->check($userId, $name, $relation);
+}
+
+
+function get_cat_info($id){
+   $info= Db::name('curriculums')->where(array('id'=>$id))->field('p_next_id')->find();
+   $name=Db::name('cat_name')->where(array('id'=>$info['p_next_id']))->value('name');
+   return $name;
 }

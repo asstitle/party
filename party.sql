@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : test
-Source Server Version : 50553
+Source Server         : localhost_3306
+Source Server Version : 50714
 Source Host           : localhost:3306
 Source Database       : party
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2019-07-22 21:23:43
+Date: 2019-07-24 18:05:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `g_answers`
+-- Table structure for g_answers
 -- ----------------------------
 DROP TABLE IF EXISTS `g_answers`;
 CREATE TABLE `g_answers` (
@@ -42,7 +42,7 @@ INSERT INTO `g_answers` VALUES ('21', '6', '吊死扶伤', '0');
 INSERT INTO `g_answers` VALUES ('22', '6', '33333', '1');
 
 -- ----------------------------
--- Table structure for `g_cat_name`
+-- Table structure for g_cat_name
 -- ----------------------------
 DROP TABLE IF EXISTS `g_cat_name`;
 CREATE TABLE `g_cat_name` (
@@ -52,7 +52,7 @@ CREATE TABLE `g_cat_name` (
   `name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '菜单名称',
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='后台菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COMMENT='后台菜单表';
 
 -- ----------------------------
 -- Records of g_cat_name
@@ -65,9 +65,15 @@ INSERT INTO `g_cat_name` VALUES ('7', '0', '0', 'sddduuu');
 INSERT INTO `g_cat_name` VALUES ('8', '0', '0', 'saddsss');
 INSERT INTO `g_cat_name` VALUES ('9', '0', '0', '水电费第三方嘻嘻嘻');
 INSERT INTO `g_cat_name` VALUES ('10', '1', '0', '的范德萨发');
+INSERT INTO `g_cat_name` VALUES ('11', '7', '0', 'sss');
+INSERT INTO `g_cat_name` VALUES ('12', '7', '0', '1');
+INSERT INTO `g_cat_name` VALUES ('13', '8', '0', 'cvv');
+INSERT INTO `g_cat_name` VALUES ('14', '8', '0', 'bvb');
+INSERT INTO `g_cat_name` VALUES ('15', '9', '0', 'cdfd');
+INSERT INTO `g_cat_name` VALUES ('16', '9', '0', '666x');
 
 -- ----------------------------
--- Table structure for `g_course`
+-- Table structure for g_course
 -- ----------------------------
 DROP TABLE IF EXISTS `g_course`;
 CREATE TABLE `g_course` (
@@ -76,23 +82,25 @@ CREATE TABLE `g_course` (
   `content` text NOT NULL COMMENT '课程内容',
   `kid` int(11) NOT NULL DEFAULT '0' COMMENT '课程id',
   `add_time` int(11) NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `video_src` varchar(255) NOT NULL DEFAULT '' COMMENT '视频地址',
   PRIMARY KEY (`id`),
   KEY `kid` (`kid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of g_course
 -- ----------------------------
-INSERT INTO `g_course` VALUES ('9', '', '', '0', '1563677692');
-INSERT INTO `g_course` VALUES ('10', '', '', '0', '1563677693');
-INSERT INTO `g_course` VALUES ('11', '', '', '0', '1563677693');
-INSERT INTO `g_course` VALUES ('12', '', '', '0', '1563677694');
-INSERT INTO `g_course` VALUES ('13', '', '', '0', '1563677694');
-INSERT INTO `g_course` VALUES ('14', '', '', '0', '1563677694');
-INSERT INTO `g_course` VALUES ('18', '第三方师傅都是啥地方', '&lt;p&gt;水电费第三方&lt;/p&gt;', '5', '1563693214');
+INSERT INTO `g_course` VALUES ('9', '', '', '0', '1563677692', '');
+INSERT INTO `g_course` VALUES ('10', '', '', '0', '1563677693', '');
+INSERT INTO `g_course` VALUES ('11', '', '', '0', '1563677693', '');
+INSERT INTO `g_course` VALUES ('12', '', '', '0', '1563677694', '');
+INSERT INTO `g_course` VALUES ('13', '', '', '0', '1563677694', '');
+INSERT INTO `g_course` VALUES ('14', '', '', '0', '1563677694', '');
+INSERT INTO `g_course` VALUES ('18', '第三方师傅都是啥地方', '&lt;p&gt;水电费第三方&lt;/p&gt;', '5', '1563693214', '');
+INSERT INTO `g_course` VALUES ('19', 'sdfsd ', '&lt;p&gt;dfsdf&amp;nbsp;&lt;/p&gt;', '5', '1563956150', '');
 
 -- ----------------------------
--- Table structure for `g_curriculums`
+-- Table structure for g_curriculums
 -- ----------------------------
 DROP TABLE IF EXISTS `g_curriculums`;
 CREATE TABLE `g_curriculums` (
@@ -108,19 +116,26 @@ CREATE TABLE `g_curriculums` (
   `browse_num` int(11) NOT NULL DEFAULT '0' COMMENT '浏览量',
   `study_num` int(11) NOT NULL DEFAULT '0' COMMENT '学习人数',
   `create_name` varchar(30) NOT NULL COMMENT '创建人',
+  `hot` int(11) NOT NULL DEFAULT '0' COMMENT '热度',
+  `recommend` int(11) NOT NULL DEFAULT '0' COMMENT '推荐',
+  `teacher_name` varchar(30) NOT NULL DEFAULT '' COMMENT '教师',
   PRIMARY KEY (`id`),
   KEY `p_id` (`p_id`) USING BTREE,
-  KEY `p_next_id` (`p_next_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  KEY `p_next_id` (`p_next_id`) USING BTREE,
+  KEY `add_time` (`add_time`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of g_curriculums
 -- ----------------------------
-INSERT INTO `g_curriculums` VALUES ('3', '1', '2', 'gdfggf', 'dsfdsfsdfdsfds', '30', '60', '20190720\\2f970cf5c7c5202179a75d17f271ba7e.jpg', '1563631776', '0', '0', '');
-INSERT INTO `g_curriculums` VALUES ('5', '1', '2', '101', '的沙发斯蒂芬', '30', '60', '20190721\\c15a0097ff65f84aed1acaa754da9fcc.jpg', '1563692742', '0', '0', 'admin');
+INSERT INTO `g_curriculums` VALUES ('3', '1', '2', 'gdfggf', 'dsfdsfsdfdsfds', '30', '60', '20190720\\2f970cf5c7c5202179a75d17f271ba7e.jpg', '1563631776', '0', '0', '', '30', '20', '');
+INSERT INTO `g_curriculums` VALUES ('5', '1', '2', '101', '的沙发斯蒂芬', '30', '60', '20190721\\c15a0097ff65f84aed1acaa754da9fcc.jpg', '1563692742', '0', '0', 'admin', '5', '10', '');
+INSERT INTO `g_curriculums` VALUES ('6', '9', '16', 'sdfsf', 'xdfdsfsdfsdf', '910', '30', '20190724\\7e26e6d9aeb46a448b863004b9747b24.jpg', '1563949075', '0', '0', 'admin', '0', '0', '');
+INSERT INTO `g_curriculums` VALUES ('7', '8', '13', 'sdfsdf ', 'sdfsdfdsfsdf', '30', '30', '20190724\\305c0a78e382d5380f480fd9580a154d.jpg', '1563949104', '0', '0', 'admin', '0', '0', '');
+INSERT INTO `g_curriculums` VALUES ('8', '7', '12', 'ddd00000', 'dfasdfsdf', '90', '60', '20190724\\b913271f10d91ca2dbe55f90338149e6.jpg', '1563949152', '0', '0', 'admin', '0', '0', '');
 
 -- ----------------------------
--- Table structure for `g_questions`
+-- Table structure for g_questions
 -- ----------------------------
 DROP TABLE IF EXISTS `g_questions`;
 CREATE TABLE `g_questions` (
@@ -138,7 +153,7 @@ INSERT INTO `g_questions` VALUES ('2', '测试100000000000000', '3');
 INSERT INTO `g_questions` VALUES ('6', '的地方1', '2');
 
 -- ----------------------------
--- Table structure for `g_test_cat`
+-- Table structure for g_test_cat
 -- ----------------------------
 DROP TABLE IF EXISTS `g_test_cat`;
 CREATE TABLE `g_test_cat` (
@@ -156,7 +171,7 @@ INSERT INTO `g_test_cat` VALUES ('2', '的撒范德萨发', '1563688524');
 INSERT INTO `g_test_cat` VALUES ('3', '第三方', '1563689076');
 
 -- ----------------------------
--- Table structure for `g_user`
+-- Table structure for g_user
 -- ----------------------------
 DROP TABLE IF EXISTS `g_user`;
 CREATE TABLE `g_user` (
@@ -175,5 +190,5 @@ CREATE TABLE `g_user` (
 -- ----------------------------
 -- Records of g_user
 -- ----------------------------
-INSERT INTO `g_user` VALUES ('1', '0', '1563796585', '1562552887', '1', 'admin', '78d47561c9df3be60c048d2f24a73080', '');
+INSERT INTO `g_user` VALUES ('1', '0', '1563956052', '1562552887', '1', 'admin', '78d47561c9df3be60c048d2f24a73080', '');
 INSERT INTO `g_user` VALUES ('2', '1', '1563588976', '1562837322', '1', 'dkd', '37f26c2c86a350368498d01710ec589d', '18382426150');
