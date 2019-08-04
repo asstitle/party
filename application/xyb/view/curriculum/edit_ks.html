@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                    <form method="post" action='<{:url("Curriculum/edit_ks_post",["tag_id"=>$tag_id])}>' class="form-horizontal" onsubmit="return check()">
+                    <form method="post" action='<{:url("Curriculum/edit_ks_post",["tag_id"=>$tag_id])}>' class="form-horizontal" onsubmit="return check()" enctype="multipart/form-data">
                         <div style="margin-top: 10px;">
                         </div>
                         <div class="form-group has-error">
@@ -39,6 +39,14 @@
                             </div>
                         </div>
                         <input type="hidden" name="id" value="<{$id}>"/>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group has-error">
+                            <label class="col-sm-2 control-label">课时视频：</label>
+                            <div class="col-sm-4">
+                                <input  type="file"  class="form-control video" name="video" value=""/>
+                                <a><{$video}></a>
+                            </div>
+                        </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">

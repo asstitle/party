@@ -1,173 +1,173 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1,user-scalable=no">
-    <meta name="keywords" content="智慧党建,党员教育，在线考核" />
-    <meta name="description" content="智慧党建平台" />
-    <title>智慧党建平台-党员教育</title>
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/bootstrap.min.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/hanyu.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/hanyu.css" />
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/header.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/header.css" />
-    <script type="text/javascript" src="__PUBLIC__home/Js/jquery-2.1.1.js" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="__PUBLIC__home/Js/bootstrap.min.js" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Js/bootstrap.min.js"></script>
-    <script>
-        $(function(){
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1,user-scalable=no">
+        <meta name="keywords" content="智慧党建,党员教育，在线考核" />
+        <meta name="description" content="智慧党建平台" />
+        <title>智慧党建平台-党员教育</title>
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/bootstrap.min.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/hanyu.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/hanyu.css" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__home/Css/header.css" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Css/header.css" />
+        <script type="text/javascript" src="__PUBLIC__home/Js/jquery-2.1.1.js" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Js/jquery-2.1.1.js"></script>
+        <script type="text/javascript" src="__PUBLIC__home/Js/bootstrap.min.js" tppabs="http://zaixiankaohe.12371.ac.cn/__PUBLIC__home/Js/bootstrap.min.js"></script>
+        <script>
+            $(function(){
 
-            $('.list_one li').mouseover(function(){           //分类
-                var i = $(this).index();
-                $('.list_right').eq(i).show().siblings('.list_right').hide();
-                $('.list_one li').eq(i).css({
-                    backgroundColor:'#111'
-                }).siblings('.list_one li').css({
-                    backgroundColor:'#333'
+                $('.list_one li').mouseover(function(){           //分类
+                    var i = $(this).index();
+                    $('.list_right').eq(i).show().siblings('.list_right').hide();
+                    $('.list_one li').eq(i).css({
+                        backgroundColor:'#111'
+                    }).siblings('.list_one li').css({
+                        backgroundColor:'#333'
+                    })
+                });
+                $('.list_one li').mouseleave(function(){
+                    var n = $(this).index();
+                    $('.list_right').eq(n).hide();
+                });
+                $('.list_right').mouseover(function(){
+                    $(this).show().siblings('list_right').hide();
+                });
+                $('.list_right').mouseleave(function(){
+                    $(this).hide();
+                });
+
+                $('.more').mouseover(function(){                //更多
+                    $(this).css({backgroundColor:'#c0bfbf'}).siblings('.more').css({backgroundColor:'#e4e4e4'});
                 })
+                $('.more').mouseleave(function(){
+                    $(this).css({backgroundColor:'#e4e4e4'});
+                })
+
+
+                $('.list_more').click(function(){           //手机 下拉菜单
+                    $('.order').slideDown("slow");
+
+                })
+                $('.return').click(function(){              //返回
+                    $('.order').slideUp("slow");
+                })
+
+
+            })
+        </script>
+
+    </head>
+    <body style="background-color:#efeeec;position:absolute;">
+
+        <!-- <script type="text/javascript" src="/__PUBLIC__home/Js/jquery-1.8.2.min.js"></script> -->
+        <script>
+            $(function(){
+            $('#s').click(function(){                         //搜索框变大
+                $('.head_si').animate({width:"12%"},300);
             });
-            $('.list_one li').mouseleave(function(){
-                var n = $(this).index();
-                $('.list_right').eq(n).hide();
-            });
-            $('.list_right').mouseover(function(){
-                $(this).show().siblings('list_right').hide();
-            });
-            $('.list_right').mouseleave(function(){
-                $(this).hide();
+            $('#s').blur(function(){
+                $('.head_si').animate({width:"6%"},300);
             });
 
-            $('.more').mouseover(function(){                //更多
-                $(this).css({backgroundColor:'#c0bfbf'}).siblings('.more').css({backgroundColor:'#e4e4e4'});
+
+            var h = $('.list_one li').height();             //手机  登陆 、个人中心
+            $('.list_one li').css({"line-height":"h"});
+
+            var winWidth = $(window).width();
+            if(winWidth > 768) {
+                $('.user').mouseover(function(){
+                    user = $('#user_hide').val();
+                    if(user == 0){$('.phone_log').show();}
+                    else{$('.phone_order').show();}
+                })
+                $('.user').mouseleave(function(){
+                    $('.phone_log').hide();
+                    $('.phone_order').hide();
+                })
+            }
+            else {
+                $('.user').click(function(){
+                    user = $('#user_hide').val();
+                    if(user == 0){$('.phone_log').show();}
+                    else{$('.phone_order').show();}
+                    $('#all_log').show();
+                })
+                $('#all_log').click(function(){
+                    $('.phone_log').hide();
+                    $('.phone_order').hide();
+                    $('#all_log').hide();
+                })
+            }
+
+
+            $('.glyphicon-align-justify').click(function(){  //手机  首页 在现测试等
+                $('#left').show();
+                $('#all').show();
+                $('#all').css({overflow:'hidden'});
+                $("body").bind("touchmove",function(event){event.preventDefault();});
+
             })
-            $('.more').mouseleave(function(){
-                $(this).css({backgroundColor:'#e4e4e4'});
+            $('#all').click(function(){
+                $('#left').hide();
+                $('#all').hide();
+                $('.top').css({left:'0%'});
+                $('.banner').css({left:'0%'});
+                $('.phone_top').css({left:'5%'});
+                $('.phone_ban').css({left:'5%'});
+                $('.sec').css({left:'0%'});
+                $('.footer').css({left:'0%'});
+                $("body").unbind('touchmove');
             })
-
-
-            $('.list_more').click(function(){           //手机 下拉菜单
-                $('.order').slideDown("slow");
-
+            $('.myorder li').mouseover(function(){      //个人中心
+                var i = $(this).index();
+                $('.myorder li').eq(i).css({backgroundColor:'#d80311'}).siblings('.myorder li').css({backgroundColor:'#fff'});
+                $('.myorder a').eq(i).css({color:'#f6f5f5'}).siblings('.myorder a').css({color:'#666'});
             })
-            $('.return').click(function(){              //返回
-                $('.order').slideUp("slow");
+            $('.myorder li').mouseleave(function(){
+                var i = $(this).index();
+                $('.myorder li').eq(i).css({backgroundColor:'#fff',color:'#666'});
+                $('.myorder a').eq(i).css({color:'#666'});
+            });
+
+            function hideList() {
+                $('.myorder').hide();
+                clearInterval(window.hide_list);
+            }
+            $('.log_tou').mouseover(function(){
+                if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
+                $('.myorder').show();
+            });
+            $('.log_tou').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
+            $('.myorder').mouseover(function(){
+                if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
+                $(this).show();
+            });
+            $('.myorder').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
+
+            $('.mymess li').mouseover(function(){      //私信
+                var i = $(this).index();
+                $('.mymess li').eq(i).css({backgroundColor:'#d80311'}).siblings('.mymess li').css({backgroundColor:'#fff'});
+                $('.mymess a').eq(i).css({color:'#f6f5f5'}).siblings('.mymess a').css({color:'#666'});
             })
-
-
-        })
-    </script>
-
-</head>
-<body style="background-color:#efeeec;position:absolute;">
-
-<!-- <script type="text/javascript" src="/__PUBLIC__home/Js/jquery-1.8.2.min.js"></script> -->
-<script>
-    $(function(){
-        $('#s').click(function(){                         //搜索框变大
-            $('.head_si').animate({width:"12%"},300);
-        });
-        $('#s').blur(function(){
-            $('.head_si').animate({width:"6%"},300);
-        });
-
-
-        var h = $('.list_one li').height();             //手机  登陆 、个人中心
-        $('.list_one li').css({"line-height":"h"});
-
-        var winWidth = $(window).width();
-        if(winWidth > 768) {
-            $('.user').mouseover(function(){
-                user = $('#user_hide').val();
-                if(user == 0){$('.phone_log').show();}
-                else{$('.phone_order').show();}
+            $('.mymess li').mouseleave(function(){
+                var i = $(this).index();
+                $('.mymess li').eq(i).css({backgroundColor:'#fff',color:'#666'});
+                $('.mymess a').eq(i).css({color:'#666'});
             })
-            $('.user').mouseleave(function(){
-                $('.phone_log').hide();
-                $('.phone_order').hide();
-            })
-        }
-        else {
-            $('.user').click(function(){
-                user = $('#user_hide').val();
-                if(user == 0){$('.phone_log').show();}
-                else{$('.phone_order').show();}
-                $('#all_log').show();
-            })
-            $('#all_log').click(function(){
-                $('.phone_log').hide();
-                $('.phone_order').hide();
-                $('#all_log').hide();
-            })
-        }
+            $('.logins li').eq(0).mouseover(function(){$('.mymess').show();});
+            $('.logins li').eq(0).mouseleave(function(){$('.mymess').hide();});
+            $('.mymess').mouseover(function(){$(this).show();});
+            $('.mymess').mouseleave(function(){$(this).hide();});
+            // setInterval(hideList, 100);
 
-
-        $('.glyphicon-align-justify').click(function(){  //手机  首页 在现测试等
-            $('#left').show();
-            $('#all').show();
-            $('#all').css({overflow:'hidden'});
-            $("body").bind("touchmove",function(event){event.preventDefault();});
-
-        })
-        $('#all').click(function(){
-            $('#left').hide();
-            $('#all').hide();
-            $('.top').css({left:'0%'});
-            $('.banner').css({left:'0%'});
-            $('.phone_top').css({left:'5%'});
-            $('.phone_ban').css({left:'5%'});
-            $('.sec').css({left:'0%'});
-            $('.footer').css({left:'0%'});
-            $("body").unbind('touchmove');
-        })
-        $('.myorder li').mouseover(function(){      //个人中心
-            var i = $(this).index();
-            $('.myorder li').eq(i).css({backgroundColor:'#d80311'}).siblings('.myorder li').css({backgroundColor:'#fff'});
-            $('.myorder a').eq(i).css({color:'#f6f5f5'}).siblings('.myorder a').css({color:'#666'});
-        })
-        $('.myorder li').mouseleave(function(){
-            var i = $(this).index();
-            $('.myorder li').eq(i).css({backgroundColor:'#fff',color:'#666'});
-            $('.myorder a').eq(i).css({color:'#666'});
-        });
-
-        function hideList() {
-            $('.myorder').hide();
-            clearInterval(window.hide_list);
-        }
-        $('.log_tou').mouseover(function(){
-            if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
-            $('.myorder').show();
-        });
-        $('.log_tou').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
-        $('.myorder').mouseover(function(){
-            if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
-            $(this).show();
-        });
-        $('.myorder').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
-
-        $('.mymess li').mouseover(function(){      //私信
-            var i = $(this).index();
-            $('.mymess li').eq(i).css({backgroundColor:'#d80311'}).siblings('.mymess li').css({backgroundColor:'#fff'});
-            $('.mymess a').eq(i).css({color:'#f6f5f5'}).siblings('.mymess a').css({color:'#666'});
-        })
-        $('.mymess li').mouseleave(function(){
-            var i = $(this).index();
-            $('.mymess li').eq(i).css({backgroundColor:'#fff',color:'#666'});
-            $('.mymess a').eq(i).css({color:'#666'});
-        })
-        $('.logins li').eq(0).mouseover(function(){$('.mymess').show();});
-        $('.logins li').eq(0).mouseleave(function(){$('.mymess').hide();});
-        $('.mymess').mouseover(function(){$(this).show();});
-        $('.mymess').mouseleave(function(){$(this).hide();});
-        // setInterval(hideList, 100);
-
-        /*$('.test').click(function(){                          //在线测试  跳转页面
-            var user = $('#user_hide').val();
-            if(user == 0){location.href="indexphp/Home/Deng/xuedeng.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Deng/xuedeng*/;}
-    else{location.href="indexphp/Home/Index/index.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Index/index*/;}
-    })*/
+            /*$('.test').click(function(){                          //在线测试  跳转页面
+                var user = $('#user_hide').val();
+                if(user == 0){location.href="indexphp/Home/Deng/xuedeng.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Deng/xuedeng*/;}
+                else{location.href="indexphp/Home/Index/index.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Index/index*/;}
+            })*/
     function logout() {
         location.href = "indexphp/Home/Hanyu/emptys.html"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Hanyu/emptys.html*/;
     }
 
-    })
+})
 </script>
 
 <div id="left">
@@ -204,102 +204,102 @@
 </div>
 
 <script>
-    //搜索
-    $(".search-icon").click(function() {
-        var title = $(".get-search").val();
-        location.href="indexphp/Home/Hanyu/lists.html-title=.htm" + title;
-    });
-    $(".get-search").keydown(function(e){
-        if(e.keyCode == 13) {
-            var title = $(this).val();
+        //搜索
+        $(".search-icon").click(function() {
+            var title = $(".get-search").val();
             location.href="indexphp/Home/Hanyu/lists.html-title=.htm" + title;
-        }
+        });
+        $(".get-search").keydown(function(e){
+            if(e.keyCode == 13) {
+                var title = $(this).val();
+                location.href="indexphp/Home/Hanyu/lists.html-title=.htm" + title;
+            }
 
-    });
-    $(".phone-search").click(function() {
-        var title = $(".phone-title").val();
-        location.href="indexphp/Home/Hanyu/lists.html-title=.htm" + title;
-    });
+        });
+        $(".phone-search").click(function() {
+            var title = $(".phone-title").val();
+            location.href="indexphp/Home/Hanyu/lists.html-title=.htm" + title;
+        });
 
-</script>
-
-
+    </script>
 
 
 
-<div class="banner">                    <!--banner图-->
-    <div class="box1">
-        <img src="__PUBLIC__home/Uploads/banner/2016-12-24/585de0841e0a1.jpg"  />
-    </div>
 
-    <div class="list_one">
 
-        <ul>
-            {volist name='arr' id='v'}
-            <li><a href="<{:url('index/lists',['id'=>$v.id,'parent_id'=>$v.parent_id])}>" ><{$v.name}><span>〉&nbsp;&nbsp;&nbsp;</span></a></li>
-            {/volist}
-        </ul>
+    <div class="banner">                    <!--banner图-->
+        <div class="box1">
+            <img src="__PUBLIC__home/Uploads/banner/2016-12-24/585de0841e0a1.jpg"  />
+        </div>
 
-    </div>
-    {volist name='arr' id='v'}
-    <div class="list_right">
+        <div class="list_one">
 
-        <ul class="list_two">
-            {volist name='$v.children' id='vv'}
-            <li><a href="<{:url('index/lists',['parent_id'=>$vv.parent_id,'id'=>$vv.id])}>" ><{$vv.name}></a></li>
-            {/volist}
-        </ul>
-        <div style="clear:both"></div>
+            <ul>
+                {volist name='arr' id='v'}
+                <li><a href="<{:url('index/lists',['id'=>$v.id,'parent_id'=>$v.parent_id])}>" ><{$v.name}><span>〉&nbsp;&nbsp;&nbsp;</span></a></li>
+                {/volist}
+            </ul>
 
-    </div>
-    {/volist}
-</div>                                      <!--banner结束-->
+        </div>
+        {volist name='arr' id='v'}
+        <div class="list_right">
 
-<div class="phone_top">
-    <ul class="phone_one">
-        <a href="indexphp/Home/Hanyu/lists.html-tid=16.htm" ><li>“两优一先”专题片</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=17.htm" ><li>党课讲座</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=18.htm" ><li>红色故事汇</li></a>        </ul>
-    <div class="list_more">∨</div>
-    <div style="clear:both;"></div>
-</div>
-<div class="order">
-    <div class="order_one">
-        <ul>
-            <a href="indexphp/Home/Hanyu/lists.html-tid=16.htm" ><li>“两优一先”专题片</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=17.htm" ><li>党课讲座</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=18.htm" ><li>红色故事汇</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=19.htm" ><li>农牧业实用技术</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=20.htm" ><li>精品欣赏</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=21.htm" ><li>红色系列剧</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=71.htm" ><li>通知通告</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=74.htm" ><li>智慧党建微信平台</li></a>            </ul>
-    </div>
-    <div class="return">×</div>
-</div>
-<!-- <div class="phone_ban">
-    <img src="/__PUBLIC__home/Images/han_31.jpg" />
-</div> -->
-<div class="container sec">
-    {volist name='arr' id='v'}
-    <div class="row">
-        <div class="zhanshi"><{$v.name}></div>
-        <div class="more"><a href="<{:url('index/lists',['id'=>$v['id'],'parent_id'=>$v['parent_id']])}>"  style="display: block;">更多课程&nbsp;></a></div>
-    </div>
-
-    <div class="row">
-        {volist name='$v.lists' id='vs'}<!--cont的开始-->
-        <div class="box-move">
-
-            <div class="show">
-                <a href="<{:url('index/details',['id'=>$vs.id])}>"  target="_blank">
-                    <img src="__UPLOAD__<{$vs.pic}>"  alt="" style="width:94%;height:69%;margin-left: 3%;margin-top: 3%;border-radius: 12px;">
-                </a>
-                <a href="<{:url('index/details',['id'=>$vs.id])}>" >
-                    <div class="titles"><{$vs.curriculum_name}></div>
-                </a>
-                <i class="glyphicon glyphicon-play-circle user_show"></i><span class="count"><{$vs.browse_num}></span>
-                <i class="glyphicon glyphicon-user user_show"></i><span class="count"><{$vs.study_num}></span>
-            </div>
+            <ul class="list_two">
+                {volist name='$v.children' id='vv'}
+                <li><a href="<{:url('index/lists',['parent_id'=>$vv.parent_id,'id'=>$vv.id])}>" ><{$vv.name}></a></li>
+                {/volist}
+            </ul>
+            <div style="clear:both"></div>
 
         </div>
         {/volist}
-        <div style="clear:both;"></div>
+    </div>                                      <!--banner结束-->
+
+    <div class="phone_top">
+        <ul class="phone_one">
+            <a href="indexphp/Home/Hanyu/lists.html-tid=16.htm" ><li>“两优一先”专题片</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=17.htm" ><li>党课讲座</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=18.htm" ><li>红色故事汇</li></a>        </ul>
+            <div class="list_more">∨</div>
+            <div style="clear:both;"></div>
+        </div>
+        <div class="order">
+            <div class="order_one">
+                <ul>
+                    <a href="indexphp/Home/Hanyu/lists.html-tid=16.htm" ><li>“两优一先”专题片</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=17.htm" ><li>党课讲座</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=18.htm" ><li>红色故事汇</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=19.htm" ><li>农牧业实用技术</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=20.htm" ><li>精品欣赏</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=21.htm" ><li>红色系列剧</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=71.htm" ><li>通知通告</li></a><a href="indexphp/Home/Hanyu/lists.html-tid=74.htm" ><li>智慧党建微信平台</li></a>            </ul>
+                </div>
+                <div class="return">×</div>
+            </div>
+    <!-- <div class="phone_ban">
+        <img src="/__PUBLIC__home/Images/han_31.jpg" />
+    </div> -->
+    <div class="container sec">
+        {volist name='arr' id='v'}
+        <div class="row">
+            <div class="zhanshi"><{$v.name}></div>
+            <div class="more"><a href="<{:url('index/lists',['id'=>$v['id'],'parent_id'=>$v['parent_id']])}>"  style="display: block;">更多课程&nbsp;></a></div>
+        </div>
+
+        <div class="row">
+            {volist name='$v.lists' id='vs'}<!--cont的开始-->
+            <div class="box-move">
+
+                <div class="show">
+                    <a href="<{:url('index/details',['id'=>$vs.id])}>"  target="_blank">
+                        <img src="__UPLOAD__<{$vs.pic}>"  alt="" style="width:94%;height:69%;margin-left: 3%;margin-top: 3%;border-radius: 12px;">
+                    </a>
+                    <a href="<{:url('index/details',['id'=>$vs.id])}>" >
+                        <div class="titles"><{$vs.curriculum_name}></div>
+                    </a>
+                    <i class="glyphicon glyphicon-play-circle user_show"></i><span class="count"><{$vs.browse_num}></span>
+                    <i class="glyphicon glyphicon-user user_show"></i><span class="count"><{$vs.study_num}></span>
+                </div>
+
+            </div>
+            {/volist}
+            <div style="clear:both;"></div>
+        </div>
+        {/volist}
     </div>
-    {/volist}
-</div>
-<style type="text/css">
+    <style type="text/css">
     @media (max-width: 768px) {
         .feosy{
             display: none;
@@ -309,52 +309,52 @@
 <style type="text/css">
 
 
-    .footer-top{
-        margin-right: -15px;
-        margin-left: -15px;
-    }
+.footer-top{
+    margin-right: -15px;
+    margin-left: -15px;
+}
 
 
-    .feosy{
-        background: #961804;
-        color: #fff;
-        text-transform: uppercase;
-        font-size: 14px;
-        padding: 20px 0px;
-        position: relative;top: 20%;
-    }
-    .wert{
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-right: auto;
-        margin-left: auto;"
-    }
+.feosy{
+    background: #961804;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 20px 0px;
+    position: relative;top: 20%;
+}
+.wert{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;"
+}
 
-    .login_bottom {
-        /* clear: both; */
-        /* float: left; */
-        /* margin-bottom: 50px; */
-        /*text-align: center;*/
-        padding-left: 50px;
-        line-height: 50px;
-        width: 100%;
-        max-width: 707px;
-        margin: 0px auto;
-    }
-    .login_bottom span {
-        width: 92%;
-        font-size: 16px;
-        float: right;
-        line-height: 40px;
-        color: #000;
-        margin-right: -25px;
-        font-weight: bolder;
-        display: block;
-        text-align: center;
-    }
-    .login_bottom img{
-        width: 60px;
-    }
+.login_bottom {
+    /* clear: both; */
+    /* float: left; */
+    /* margin-bottom: 50px; */
+    /*text-align: center;*/
+    padding-left: 50px;
+    line-height: 50px;
+    width: 100%;
+    max-width: 707px;
+    margin: 0px auto;
+}
+.login_bottom span {
+    width: 92%;
+    font-size: 16px;
+    float: right;
+    line-height: 40px;
+    color: #000;
+    margin-right: -25px;
+    font-weight: bolder;
+    display: block;
+    text-align: center;
+}
+.login_bottom img{
+    width: 60px;
+}
 </style>
 <footer class="feosy">
     {include file="Public/footer" /}
@@ -398,66 +398,66 @@
             marginTop:'','box-shadow':'none'},200);
     });
 
-    //鼠标滑上滑下颜色
-    $(".neck").mouseover(function(){
-        var i = $(this).index();
-        $(this).css('backgroundColor','#ccc').siblings(".neck").css('backgroundColor','#efeeec')
-    })
+        //鼠标滑上滑下颜色
+        $(".neck").mouseover(function(){
+            var i = $(this).index();
+            $(this).css('backgroundColor','#ccc').siblings(".neck").css('backgroundColor','#efeeec')
+        })
 
-    //点击颜色变红
-    $(".tushu").eq(0).css('display','block');
-    $(".neck").eq(0).css('backgroundColor','#cf010e');
-    $(".neck").click(function(){
-        var i = $(this).index();
-        $(".neck").eq(i).css('backgroundColor','#cf010e').siblings(".neck").css('backgroundColor','#efeeec')
-        $(".tushu").eq(i).show().siblings(".tushu").hide();
-    })
+        //点击颜色变红
+        $(".tushu").eq(0).css('display','block');
+        $(".neck").eq(0).css('backgroundColor','#cf010e');
+        $(".neck").click(function(){
+            var i = $(this).index();
+            $(".neck").eq(i).css('backgroundColor','#cf010e').siblings(".neck").css('backgroundColor','#efeeec')
+            $(".tushu").eq(i).show().siblings(".tushu").hide();
+        })
 
-    $(".neck_yi").eq(0).css('backgroundColor','#ccc');
-    $(".neck_yi").mouseover(function(){
-        var i = $(this).index();
-        $(this).css('backgroundColor','#ccc').siblings(".neck_yi").css('backgroundColor','#efeeec')
-    })
-    $(".bod_er").mouseleave(function(){
-        $(".neck_yi").css('backgroundColor','#efeeec');
         $(".neck_yi").eq(0).css('backgroundColor','#ccc');
-    })
+        $(".neck_yi").mouseover(function(){
+            var i = $(this).index();
+            $(this).css('backgroundColor','#ccc').siblings(".neck_yi").css('backgroundColor','#efeeec')
+        })
+        $(".bod_er").mouseleave(function(){
+            $(".neck_yi").css('backgroundColor','#efeeec');
+            $(".neck_yi").eq(0).css('backgroundColor','#ccc');
+        })
 
-    //打开关闭左浮动菜单
-    $("#float-arrows").click(function() {
-        var thisState = $(this).attr("class");
-        if(thisState == 'glyphicon glyphicon-chevron-left') {
-            $(this).parents(".left-float").animate({
-                left : '-160px'
-            }, 500);
-            $(this).attr("class", "glyphicon glyphicon-chevron-right");
-        } else {
-            $(this).parents(".left-float").animate({
-                left : 0
-            }, 500);
-            $(this).attr("class", "glyphicon glyphicon-chevron-left");
-        }
-    });
-
-    //意见反馈
-    $(".submit-opinion").click(function() {
-        var body = $("#opinion-body").val();
-        var uid = $("#hid-uid").val();
-        if(uid == '') alert('请登录');
-        else {
-            if(body == '') alert('请填写内容');
-            else {
-                $.post("indexphp/Home/Index/getOpinion.html"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Index/getOpinion.html*/, {uid : uid, body : body}, function(data) {
-                    if(data == 'get') {
-                        alert('反馈成功！');
-                        location.href = location.href;
-                    } else {
-                        alert(data);
-                    }
-                });
+        //打开关闭左浮动菜单
+        $("#float-arrows").click(function() {
+            var thisState = $(this).attr("class");
+            if(thisState == 'glyphicon glyphicon-chevron-left') {
+                $(this).parents(".left-float").animate({
+                    left : '-160px'
+                }, 500);
+                $(this).attr("class", "glyphicon glyphicon-chevron-right");
+            } else {
+                $(this).parents(".left-float").animate({
+                    left : 0
+                }, 500);
+                $(this).attr("class", "glyphicon glyphicon-chevron-left");
             }
-        }
+        });
 
-    });
-</script>
-</html>
+        //意见反馈
+        $(".submit-opinion").click(function() {
+            var body = $("#opinion-body").val();
+            var uid = $("#hid-uid").val();
+            if(uid == '') alert('请登录');
+            else {
+                if(body == '') alert('请填写内容');
+                else {
+                    $.post("indexphp/Home/Index/getOpinion.html"/*tpa=http://zaixiankaohe.12371.ac.cn/indexphp/Home/Index/getOpinion.html*/, {uid : uid, body : body}, function(data) {
+                        if(data == 'get') {
+                            alert('反馈成功！');
+                            location.href = location.href;
+                        } else {
+                            alert(data);
+                        }
+                    });
+                }
+            }
+
+        });
+    </script>
+    </html>

@@ -73,6 +73,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>标题</th>
+                                                <th>视频地址</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
@@ -81,6 +82,7 @@
                                                 <tr>
                                                     <td><{$v.id}></td>
                                                     <td><a value="<{:url('Curriculum/edit_ks',['id'=>$v.id])}>" cate="2" class="iframe" style="cursor: pointer"><{$v.title}></a></td>
+                                                    <td><{$v.video}></td>
                                                     <td>
                                                         <span class="iframe ispan" value="<{:url('Curriculum/edit_ks',['id'=>$v.id])}>" cate="2">
                                                         编辑

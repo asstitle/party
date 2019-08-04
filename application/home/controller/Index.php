@@ -94,7 +94,7 @@ class Index extends Controller
        $info=Db::name('curriculums')->where(array('id'=>$id))->field('pic,p_id,p_next_id,curriculum_name,study_num')->find();
        $now_name=Db::name('cat_name')->where(array('id'=>$info['p_next_id']))->value('name');
        //查询该课程下的课时信息
-       $course_list=Db::name('course')->where(array('kid'=>$id))->select();
+       $course_list=Db::name('course')->where(array('kid'=>$id))->order('add_time desc')->select();
        $this->assign('now_name',$now_name);
        $this->assign('info',$info);
        $this->assign('course_list',$course_list);

@@ -1,0 +1,437 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:72:"D:\PHPTutorial\WWW\xx\public/../application/home\view\detail\course.html";i:1564926607;}*/ ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset=utf-8"utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 ,maximum-scale=1,user-scalable=no">
+    <meta name="keywords" content="智慧党建,党员教育，在线考核" />
+    <meta name="description" content="智慧党建平台" />
+    <title>丁铁人的铁军梦-智慧党建平台-党员教育</title>
+    <link rel="stylesheet" href="/static/home/Css/bootstrap.min.css"  />
+    <link rel="stylesheet" type="text/css" href="/static/home/Css/header.css" />
+    <link rel="stylesheet" href="/static/home/Css/course.css"  />
+    <script type="text/javascript" src="/static/home/Js/jquery-2.1.1.js" ></script>
+    <script type="text/javascript" src="/static/home/Js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="/static/home/ckplayer/ckplayer.js"  charset="UTF-8"></script>
+
+
+</head>
+<body>
+    <!-- <script type="text/javascript" src="/Public/Js/jquery-1.8.2.min.js"></script> -->
+    <script>
+        $(function(){
+                $('#s').click(function(){                         //搜索框变大
+                    $('.head_si').animate({width:"12%"},300);
+                });
+                $('#s').blur(function(){
+                    $('.head_si').animate({width:"6%"},300);
+                });
+
+
+                var h = $('.list_one li').height();             //手机  登陆 、个人中心
+                $('.list_one li').css({"line-height":"h"});
+
+                var winWidth = $(window).width();
+                if(winWidth > 768) {
+                    $('.user').mouseover(function(){
+                        user = $('#user_hide').val();
+                        if(user == 0){$('.phone_log').show();}
+                        else{$('.phone_order').show();}
+                    })
+                    $('.user').mouseleave(function(){
+                        $('.phone_log').hide();
+                        $('.phone_order').hide();
+                    })
+                }
+                else {
+                    $('.user').click(function(){
+                        user = $('#user_hide').val();
+                        if(user == 0){$('.phone_log').show();}
+                        else{$('.phone_order').show();}
+                        $('#all_log').show();
+                    })
+                    $('#all_log').click(function(){
+                        $('.phone_log').hide();
+                        $('.phone_order').hide();
+                        $('#all_log').hide();
+                    })
+                }
+
+
+                $('.glyphicon-align-justify').click(function(){  //手机  首页 在现测试等
+                    $('#left').show();
+                    $('#all').show();
+                    $('#all').css({overflow:'hidden'});
+                    $("body").bind("touchmove",function(event){event.preventDefault();});
+
+                })
+                $('#all').click(function(){
+                    $('#left').hide();
+                    $('#all').hide();
+                    $('.top').css({left:'0%'});
+                    $('.banner').css({left:'0%'});
+                    $('.phone_top').css({left:'5%'});
+                    $('.phone_ban').css({left:'5%'});
+                    $('.sec').css({left:'0%'});
+                    $('.footer').css({left:'0%'});
+                    $("body").unbind('touchmove');
+                })
+                $('.myorder li').mouseover(function(){      //个人中心
+                    var i = $(this).index();
+                    $('.myorder li').eq(i).css({backgroundColor:'#d80311'}).siblings('.myorder li').css({backgroundColor:'#fff'});
+                    $('.myorder a').eq(i).css({color:'#f6f5f5'}).siblings('.myorder a').css({color:'#666'});
+                })
+                $('.myorder li').mouseleave(function(){
+                    var i = $(this).index();
+                    $('.myorder li').eq(i).css({backgroundColor:'#fff',color:'#666'});
+                    $('.myorder a').eq(i).css({color:'#666'});
+                });
+
+                function hideList() {
+                    $('.myorder').hide();
+                    clearInterval(window.hide_list);
+                }
+                $('.log_tou').mouseover(function(){
+                    if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
+                    $('.myorder').show();
+                });
+                $('.log_tou').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
+                $('.myorder').mouseover(function(){
+                    if(typeof window.hide_list != 'undefined') clearInterval(window.hide_list);
+                    $(this).show();
+                });
+                $('.myorder').mouseleave(function(){ window.hide_list = setInterval(hideList, 100); });
+
+                $('.mymess li').mouseover(function(){      //私信
+                    var i = $(this).index();
+                    $('.mymess li').eq(i).css({backgroundColor:'#d80311'}).siblings('.mymess li').css({backgroundColor:'#fff'});
+                    $('.mymess a').eq(i).css({color:'#f6f5f5'}).siblings('.mymess a').css({color:'#666'});
+                })
+                $('.mymess li').mouseleave(function(){
+                    var i = $(this).index();
+                    $('.mymess li').eq(i).css({backgroundColor:'#fff',color:'#666'});
+                    $('.mymess a').eq(i).css({color:'#666'});
+                })
+                $('.logins li').eq(0).mouseover(function(){$('.mymess').show();});
+                $('.logins li').eq(0).mouseleave(function(){$('.mymess').hide();});
+                $('.mymess').mouseover(function(){$(this).show();});
+                $('.mymess').mouseleave(function(){$(this).hide();});
+                // setInterval(hideList, 100);
+
+                /*$('.test').click(function(){                          //在线测试  跳转页面
+                    var user = $('#user_hide').val();
+                    if(user == 0){location.href="../Deng/xuedeng.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Deng/xuedeng*/;}
+                    else{location.href="../Index/index.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Index/index*/;}
+                })*/
+function logout() {
+    location.href = "../Hanyu/emptys.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/emptys.html*/;
+}
+
+})
+</script>
+
+<div id="left">
+    <form>
+        <input name="" type="text" placeholder="搜索" class="phone-title" style="outline: none;" />
+        <i class="glyphicon glyphicon-search phone-search"></i>
+    </form>
+    <ul>
+        <li><a href="../Index/index.html" >首页</a></li>
+        <li><a href="../Study/study.html" target="_blank">党员学习情况</a>
+        </li>
+        <li class="test"><a href="../Test/index.html" >在线测试</a></li>
+        <li data-toggle="modal" data-target="#myModal">意见反馈</li>
+    </ul>
+</div>
+<div id="all"></div>
+<div id="all_log"></div>
+<div class="top">                             <!--顶部开始-->
+    <div class="glyphicon glyphicon-align-justify"></div>
+    <div class="head_yi">智慧党建平台-党员教育</div>
+    <div class="head_er"><a href="../Index/index.html" >首页</a></div>
+    <div class="head_san test"><a href="../Test/index.html"  target="_blank">在线测试</a>
+    </div>
+    <div class="head_sans test">
+        <a href="../Study/study.html" target="_blank">党员学习情况</a>
+    </div>
+    <div class="glyphicon glyphicon-user user"></div>
+    <!-- 网页登陆-->
+    <div class="deng"><a href="../Deng/xuedeng.html"  style="display: block;">登录</a></div>
+    <div class="head_si">
+        <input type="text" class="get-search" placeholder="搜索" name="s" id="s" style="outline: none;">
+        <span class="glyphicon glyphicon-search search-icon"></span>
+    </div>
+    <div style="clear:both;"></div>
+    <ul class="phone_log">                <!--   手机  下拉菜单-->
+        <li><a href="../Deng/xuedeng.html" >登录</a></li>
+    </ul>
+    <ul class="phone_order" style="border:1px solid #e7e7e7;">
+        <li style="text-align:center;">0</li>
+        <li><a href="../Tec/tec.html"  style="display: block;"><span class="glyphicon glyphicon-user"></span>&nbsp;个人主页</a></li>
+        <li><a href="../Hanyu/infor.html" style="display: block;"><span class="glyphicon glyphicon-cog"></span>&nbsp;个人设置</a></li>
+        <li><a href="../Hanyu/chuang.html"  style="display: block;"><span class="glyphicon glyphicon-book"></span>&nbsp;我的学习</a></li>
+        <li><a href="../Comment/notice.html"  style="display: block;"><span class="glyphicon glyphicon-bell"></span>&nbsp;通知</a></li>
+        <li><a href="../Hanyu/emptys.html" style="display: block;"><span class="glyphicon glyphicon-off"></span>&nbsp;退出登录</a></li>
+    </ul>
+    <form action="" method="get"><input name="" type="hidden" value="0" id="user_hide"/></form>
+</div>	                                <!--顶部的结束-->
+<div class="myorder" style="border:1px solid #e7e7e7;">                   <!--   网页  下拉菜单-->
+    <div class="log_user">0</div>
+    <ul>
+        <li><a href="../Tec/tec.html"  style="display: block;"><span class="glyphicon glyphicon-user"></span>&nbsp;个人主页</a></li>
+        <li><a href="../Hanyu/infor.html" style="display: block;"><span class="glyphicon glyphicon-cog"></span>&nbsp;个人设置</a></li>
+        <li><a href="../Hanyu/emptys.html"  style="display: block;"><span class="glyphicon glyphicon-off"></span>&nbsp;退出登录</a></li>
+    </ul>
+</div>
+<div class="mymess" style="border:1px solid #e7e7e7;height: 40px;"	>
+    <ul>
+        <li style="height: 100%;"><a href="../Comment/notice.html"  style="display: block;"><span class="glyphicon glyphicon-bell"></span>&nbsp;通知</a></li>
+    </ul>
+</div>
+
+<script>
+            //搜索
+            $(".search-icon").click(function() {
+                var title = $(".get-search").val();
+                location.href="../Hanyu/lists.html-title=.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/lists.html?title=*/ + title;
+            });
+            $(".get-search").keydown(function(e){
+                if(e.keyCode == 13) {
+                    var title = $(this).val();
+                    location.href="../Hanyu/lists.html-title=.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/lists.html?title=*/ + title;
+                }
+
+            });
+            $(".phone-search").click(function() {
+                var title = $(".phone-title").val();
+                location.href="../Hanyu/lists.html-title=.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/lists.html?title=*/ + title;
+            });
+
+        </script>
+
+
+        <div class="body-box">
+            <h3 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">丁铁人的铁军梦</h3>
+            <br>
+            <input type="button" class="btn btn-danger btn-sm active course-title" value="课时1：丁铁人的铁军梦">
+            <br>
+            <br>
+            <!-- 视频课时 -->
+            <div class="video-box">
+                <!-- aliyun -->
+                <div  class="prism-player" id="J_prismPlayer" style="height:600px;"></div>
+
+
+            </div>	<div style="clear: both;"></div>
+            <div style="margin-top:220px;">
+                <p class="list-group-item active" style="background: #d80311">相关资料</p>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        <div style="clear: both;"></div>
+        <style type="text/css">
+        @media (max-width: 768px) {
+            .feosy{
+                display: none;
+            }
+        }
+    </style>
+    <style type="text/css">
+
+
+    .footer-top{
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+
+    .feosy{
+        background: #961804;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        padding: 20px 0px;
+        position: relative;top: 20%;
+    }
+    .wert{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;"
+    }
+
+    .login_bottom {
+        /* clear: both; */
+        /* float: left; */
+        /* margin-bottom: 50px; */
+        /*text-align: center;*/
+        padding-left: 50px;
+        line-height: 50px;
+        width: 100%;
+        max-width: 707px;
+        margin: 0px auto;
+    }
+    .login_bottom span {
+        width: 92%;
+        font-size: 16px;
+        float: right;
+        line-height: 40px;
+        color: #000;
+        margin-right: -25px;
+        font-weight: bolder;
+        display: block;
+        text-align: center;
+    }
+    .login_bottom img{
+        width: 60px;
+    }
+</style>
+<footer class="feosy">
+    <div class="container wert">
+        <div class="row footer-top">
+            <div class="login_bottom">
+                <img src="../../../../www.etkqqzhdj.gov.cn/wp-content/themes/dangjian/newstyle/v3/images/dzjg-1.png" >
+                <span><div style="text-align:center;padding:20px 0;font-size:14px;">技术支持　<a href="http://fuwu.yinhaisoft.com" title="智慧党建" target="_blank">智慧党建</a>开发服务集团*mobile:13436570110</br></br></div>
+                </span>
+
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<!-- player -->
+<script>
+    var seek = Number("0");
+    var isJump = 0;
+            // $(document).ready(function(){
+                window.learnStatus = 0;
+                var detail = 'http://hlstest.etkqqzhdj.gov.cn/5afd3c7eb28b3/5afd3c7eb28b3.m3u8';
+                if(detail.substr(0, 4) == 'http') {
+                    var file = detail;
+                } else {
+                    var file = 'rtmp://rtmp.etkqqzhdj.gov.cn:1115/vod/'+detail;
+                }
+                var videoObject = {
+                //playerID:'ckplayer01',//播放器ID，第一个字符不能是数字，用来在使用多个播放器时监听到的函数将在所有参数最后添加一个参数用来获取播放器的内容
+                container: '#J_prismPlayer', //容器的ID或className
+                variable: 'player', //播放函数名称
+                loaded: 'loadedHandler', //当播放器加载后执行的函数
+                loop: false, //播放结束是否循环播放
+                //autoplay: true, //是否自动播放
+                //duration: 500, //设置视频总时间
+                //cktrack: 'http://zaixiankaohe.12371.ac.cn/index.php/Home/Details/material/srt.srt', //字幕文件
+                // poster: 'material/poster.jpg'/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Details/material/poster.jpg*/, //封面图片
+                config: '', //指定配置函数
+                //debug: true, //是否开启调试模式
+                //flashplayer: true, //强制使用flashplayer
+                //drag: 'start', //拖动的属性
+                seek: 0, //默认跳转的时间
+
+                //mobileCkControls:true,//是否在移动端（包括ios）环境中显示控制栏
+                //live:true,//是否是直播视频，true=直播，false=点播
+                video: file
+            };
+            var player = new ckplayer(videoObject);
+
+            // player.addListener('loadedmetadata', loadedmetadata);
+            var currentTime = 0;
+
+            function loadedHandler(){
+                console.log('load')
+
+                player.addListener('play', listenPlay)
+                player.addListener('pause', listenPause)
+                player.addListener('ended', listenEnded)
+                player.addListener('time', listenTime)
+            }
+
+            // });
+            // 播放进度
+            var seek = "0";
+            // 播放初始化 0为初始化状态
+            var init = 0;
+            if(seek == '' || seek == null || seek == 0)
+                init = 0;
+            else
+                init = 1;
+            // 发送初始化命令
+            if(init == 0) accumulativeScore(0);
+
+
+            function listenPlay(){
+                console.log('play')
+                if(isJump == 0) {
+                    isJump = 1;
+                    player.videoSeek(seek);
+                }
+                accumulativeScore(1);
+                var sendTimer = setInterval(getAcc, 1000 * 60);
+            }
+
+
+            function listenPause(){
+                accumulativeScore(2);
+                clearInterval(sendTimer);
+            }
+
+
+
+            function listenEnded(){
+                console.log('end')
+                accumulativeScore(3);
+                accumulativeScore(0);
+                clearInterval(sendTimer);
+                getEnd();
+                init = 0;
+
+            }
+
+            // 超过3分钟暂停
+            $("body").mousemove(function(e) {
+                if(typeof moveTimer != 'undefined') clearInterval(moveTimer);
+                moveTimer = setInterval(pauseVideo, 1000 * 60 * 3);
+            });
+            function pauseVideo() {
+                player.videoPause();
+                clearInterval(moveTimer);
+            }
+
+            function getAcc() {
+                accumulativeScore(1);
+            }
+
+            // 状态
+            function accumulativeScore(status) {
+
+                console.log(currentTime)
+                var lesson_id = "1149";
+                var course_id = "42";
+                var video_timestamp = currentTime;
+                //console.log(video_timestamp);
+                $.post("getVideoScore.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Details/getVideoScore.html*/, {lesson_id: lesson_id, course_id: course_id, video_timestamp: video_timestamp, status: status}, function(msg) {
+                    console.log(msg)
+                    if(msg != '') alert(msg);
+                });
+            }
+
+            function listenTime(time) {
+                currentTime = time;
+            }
+
+
+
+            // 离开页面
+            function getEnd() {
+                var lesson_id = "1149";
+                var course_id = "42";
+                // $.get("http://zaixiankaohe.12371.ac.cn/index.php/Home/Details/getEndTime.html", {id: window.learnStatus});
+                $.post("saveProgress.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Details/saveProgress.html*/, {course_id: course_id, lesson_id: lesson_id, progress: currentTime});
+            }
+            $(window).unload(function() {
+                getEnd();
+            });
+            $(window).on("beforeunload", function(event) {
+                getEnd();
+            });
+        </script></html>

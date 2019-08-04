@@ -149,17 +149,35 @@ class Curriculum extends Base
     //添加课时提交
     public function add_ks_post(){
         if($this->request->isPost()){
-            $tag_id=$this->request->param('tag_id');
-            $data['title']=$this->request->param('title');
-            $data['content']=htmlspecialchars($this->request->param('content'));
-            $data['kid']=$this->request->param('kid');
-            $data['add_time']=time();
-            $res=Db::name('course')->insert($data);
-            if($res){
-                 $this->redirect('add_ks',['state'=>1,'tag_id'=>$tag_id]);
-            }else{
-                $this->error('添加失败');
+            $file = request()->file('video');
+            if(empty($file)){
+                $this->error('请上传视频');
             }
+            // 移动到框架应用根目录/public/uploads/ 目录下
+            $path=ROOT_PATH . 'public' . DS . 'video_uploads/'.date('Ymd');
+            if(!is_dir($path)){
+                mkdir($path,0777);
+            }
+            $info = $file->validate(['size'=>50*1024*1024,'ext'=>'mp4,wmv,avi,rmvb'])->move($path,'');
+            if($info){
+                $file_name=$file->getInfo();
+                $data['video']=date('Ymd').'/'.$file_name['name'];
+                $tag_id=$this->request->param('tag_id');
+                $data['title']=$this->request->param('title');
+                $data['content']=htmlspecialchars($this->request->param('content'));
+                $data['kid']=$this->request->param('kid');
+                $data['add_time']=time();
+                $res=Db::name('course')->insert($data);
+                if($res){
+                    $this->redirect('add_ks',['state'=>1,'tag_id'=>$tag_id]);
+                }else{
+                    $this->error('添加失败');
+                }
+            }else{
+                // 上传失败获取错误信息
+                $this->error($file->getError());
+            }
+
         }
     }
     //课时编辑
@@ -172,28 +190,57 @@ class Curriculum extends Base
             $this->assign('id',$id);
             $this->assign('state',$state);
             $this->assign('content',htmlspecialchars_decode($info['content']));
+            $this->assign('video',ROOT_PATH . 'public' . DS . 'video_uploads/'.$info['video']);
             return $this->fetch();
         }
     }
     //课时编辑提交
     public function edit_ks_post(){
         if($this->request->isPost()){
-            $tag_id=$this->request->param('tag_id');
-            $data['title']=$this->request->param('title');
-            $data['content']=htmlspecialchars($this->request->param('content'));
+            $file = request()->file('video');
             $id=$this->request->param('id');
-            $res=Db::name('course')->where(array('id'=>$id))->update($data);
-            if($res){
-                $this->redirect('edit_ks',['state'=>1,'tag_id'=>$tag_id]);
+            if(empty($file)){
+                $info=1;
             }else{
-                $this->error('编辑失败');
+                // 移动到框架应用根目录/public/uploads/ 目录下
+                $path=ROOT_PATH . 'public' . DS . 'video_uploads/'.date('Ymd');
+                if(!is_dir($path)){
+                    mkdir($path,0777);
+                }
+                $info = $file->validate(['size'=>60*1024*1024,'ext'=>'mp4,wmv,avi,rmvb'])->move($path,'');
             }
+            if($info){
+                if(!empty($file)){
+                    $file_name=$file->getInfo();
+                    $data['video']=date('Ymd').'/'.$file_name['name'];
+                    $pic_info=Db::name('course')->where(array('id'=>$id))->field('video')->find();
+
+                    //删除原来的图片
+                    @unlink('../public/video_uploads/'.$pic_info['video']);
+                }
+                $tag_id=$this->request->param('tag_id');
+                $data['title']=$this->request->param('title');
+                $data['content']=htmlspecialchars($this->request->param('content'));
+                $res=Db::name('course')->where(array('id'=>$id))->update($data);
+                if($res){
+                    $this->redirect('edit_ks',['state'=>1,'tag_id'=>$tag_id]);
+                }else{
+                    $this->error('编辑失败');
+                }
+            }else{
+                // 上传失败获取错误信息
+                $this->error($file->getError());
+            }
+
         }
     }
     //删除课时
     public function del_ks(){
       if($this->request->isAjax()){
           $id=$this->request->param('id');
+          $info=Db::name('course')->where(array('id'=>$id))->find();
+          //删除视频
+          @unlink('../public/video_uploads/'.$info['video']);
           $res=Db::name('course')->where(array('id'=>$id))->delete();
           if($res){
              return json(array('state'=>1,'info'=>'删除成功'));

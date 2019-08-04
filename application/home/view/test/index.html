@@ -13,9 +13,9 @@
 </head>
 
 <body>
-<!-- <script type="text/javascript" src="/Public/Js/jquery-1.8.2.min.js"></script> -->
-<script>
-    $(function(){
+    <!-- <script type="text/javascript" src="/Public/Js/jquery-1.8.2.min.js"></script> -->
+    <script>
+        $(function(){
         $('#s').click(function(){                         //搜索框变大
             $('.head_si').animate({width:"12%"},300);
         });
@@ -117,13 +117,13 @@
         /*$('.test').click(function(){                          //在线测试  跳转页面
             var user = $('#user_hide').val();
             if(user == 0){location.href="../Deng/xuedeng.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Deng/xuedeng*/;}
-    else{location.href="../Index/index.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Index/index*/;}
-    })*/
-    function logout() {
-        location.href = "../Hanyu/emptys.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/emptys.html*/;
-    }
+            else{location.href="../Index/index.htm"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Index/index*/;}
+        })*/
+function logout() {
+    location.href = "../Hanyu/emptys.html"/*tpa=http://zaixiankaohe.12371.ac.cn/index.php/Home/Hanyu/emptys.html*/;
+}
 
-    })
+})
 </script>
 
 <div id="left">
@@ -282,86 +282,86 @@
 
         <div class="right"> <!--右侧的开始-->
             <div class="tops"><span class="ant">党&nbsp;建&nbsp;测&nbsp;试&nbsp;题&nbsp;库</div>
-            <div class="bottom">
+                <div class="bottom">
 
-                <div class="cuo" id="cuo" style="display:none;">
+                    <div class="cuo" id="cuo" style="display:none;">
 
-                    <p class="pas">提交成功!</p>
-                    <p id="dati_shu">本次答对0道题，不满足积分条件，欢迎继续作答！</p>
-                    <p style="margin-top:20px;">
-                        <input class="jixu" value="&nbsp;确&nbsp;&nbsp;定">
+                        <p class="pas">提交成功!</p>
+                        <p id="dati_shu">本次答对0道题，不满足积分条件，欢迎继续作答！</p>
+                        <p style="margin-top:20px;">
+                            <input class="jixu" value="&nbsp;确&nbsp;&nbsp;定">
 
-                    </p>
+                        </p>
+                    </div>
+
+                    <div class="zheng" id="zheng3" style="display:none;">
+
+                        <p class="pas">提交成功!</p>
+                        <p id="dati_shu">本次共答对3道题，加1分。</p>
+                        <p style="margin-top:20px;">
+                            <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
+
+                        </p>
+                    </div>
+                    <div class="zheng" id="zheng2" style="display:none;">
+
+                        <p class="pas">提交成功!</p>
+                        <p id="dati_shu">本次共答对2道题，不满足积分条件，欢迎继续作答！</p>
+                        <p style="margin-top:20px;">
+                            <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
+
+                        </p>
+                    </div>
+                    <div class="zheng" id="zheng1" style="display:none;">
+
+                        <p class="pas">提交成功!</p>
+                        <p id="dati_shu">本次共答对1道题，不满足积分条件，欢迎继续作答！</p>
+                        <p style="margin-top:20px;">
+                            <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
+
+                        </p>
+                    </div>
+                    <div class="zheng" id="wancheng" style="display:none;">
+
+                        <p class="pas">提交成功!</p>
+                        <p id="dati_shu">您今天已经完成任务了！</p>
+                        <p style="margin-top:20px;">
+                            <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定" style="width:50px;height:20px;cursor: pointer;border:none;padding:5px;font-size:15px;color:#fff;background-color:#F60;margin-left:130px;margin-top:12px;border-radius:2px;"></a>
+
+                        </p>
+                    </div>
+
+                    <div class="yi_yi" id="yiyi">
+                        <ul style="list-style:none;margin-top:30px;">
+                            <li style="margin-left:25px;"><span id="quesid1" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
+                            <li style="margin-left:25px;" >A<input type="radio" name="checkbox1" class="ansva ans1 box" style="margin-left:6.1px;cursor: pointer;" value=""/><span class="ansa" style="margin-left:12px;"></span></li>
+                            <li style="margin-left:25px;">B<input type="radio" name="checkbox1" class="ansvb ans1 box" style="margin-left:7.6px;cursor: pointer;" value=""/><span class="ansb" style="margin-left:12px;"></span></li>
+                            <li style="margin-left:25px;">C<input type="radio" name="checkbox1" class="ansvc ans1 box" style="margin-left:6.8px;cursor: pointer;" value=""/><span class="ansc" style="margin-left:12px;"></span></li>
+                            <li style="margin-left:25px;">D<input type="radio" name="checkbox1" class="ansvd ans1 box" style="margin-left:5.6px;cursor: pointer;" value=""/><span class="ansd" style="margin-left:12px;"></span></li>
+                        </ul>
+                        <ul style="list-style:none;margin-top:30px;">
+                            <li style="margin-left:25px;"><span id="quesid2" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
+                            <li style="margin-left:25px;" >A<input type="radio" name="checkbox2" class="ansva ans2 box" style="margin-left:6.1px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansa"></span></li>
+                            <li style="margin-left:25px;">B<input type="radio" name="checkbox2" class="ansvb ans2 box" style="margin-left:7.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansb"></span></li>
+                            <li style="margin-left:25px;">C<input type="radio" name="checkbox2" class="ansvc ans2 box" style="margin-left:6.8px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansc"></span></li>
+                            <li style="margin-left:25px;">D<input type="radio" name="checkbox2" class="ansvd ans2 box" style="margin-left:5.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansd"></span></li>
+                        </ul>
+                        <ul style="list-style:none;margin-top:30px;">
+                            <li style="margin-left:25px;"><span id="quesid3" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
+                            <li style="margin-left:25px;" >A<input type="radio" name="checkbox3" class="ansva ans3 box" style="margin-left:6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansa"></span></li>
+                            <li style="margin-left:25px;">B<input type="radio" name="checkbox3" class="ansvb ans3 box" style="margin-left:7.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansb"></span></li>
+                            <li style="margin-left:25px;">C<input type="radio" name="checkbox3" class="ansvc ans3 box" style="margin-left:6.8px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansc"></span></li>
+                            <li style="margin-left:25px;">D<input type="radio" name="checkbox3" class="ansvd ans3 box" style="margin-left:5.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansd"></span></li>
+                        </ul>
+                        <p class="pss"><input type="submit" value="提交" id="tijiao"></p>
+
+                    </div>
+
                 </div>
 
-                <div class="zheng" id="zheng3" style="display:none;">
-
-                    <p class="pas">提交成功!</p>
-                    <p id="dati_shu">本次共答对3道题，加1分。</p>
-                    <p style="margin-top:20px;">
-                        <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
-
-                    </p>
-                </div>
-                <div class="zheng" id="zheng2" style="display:none;">
-
-                    <p class="pas">提交成功!</p>
-                    <p id="dati_shu">本次共答对2道题，不满足积分条件，欢迎继续作答！</p>
-                    <p style="margin-top:20px;">
-                        <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
-
-                    </p>
-                </div>
-                <div class="zheng" id="zheng1" style="display:none;">
-
-                    <p class="pas">提交成功!</p>
-                    <p id="dati_shu">本次共答对1道题，不满足积分条件，欢迎继续作答！</p>
-                    <p style="margin-top:20px;">
-                        <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定"></a>
-
-                    </p>
-                </div>
-                <div class="zheng" id="wancheng" style="display:none;">
-
-                    <p class="pas">提交成功!</p>
-                    <p id="dati_shu">您今天已经完成任务了！</p>
-                    <p style="margin-top:20px;">
-                        <a href="###"><input class="jixu" value="&nbsp;确&nbsp;&nbsp;定" style="width:50px;height:20px;cursor: pointer;border:none;padding:5px;font-size:15px;color:#fff;background-color:#F60;margin-left:130px;margin-top:12px;border-radius:2px;"></a>
-
-                    </p>
-                </div>
-
-                <div class="yi_yi" id="yiyi">
-                    <ul style="list-style:none;margin-top:30px;">
-                        <li style="margin-left:25px;"><span id="quesid1" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
-                        <li style="margin-left:25px;" >A<input type="radio" name="checkbox1" class="ansva ans1 box" style="margin-left:6.1px;cursor: pointer;" value=""/><span class="ansa" style="margin-left:12px;"></span></li>
-                        <li style="margin-left:25px;">B<input type="radio" name="checkbox1" class="ansvb ans1 box" style="margin-left:7.6px;cursor: pointer;" value=""/><span class="ansb" style="margin-left:12px;"></span></li>
-                        <li style="margin-left:25px;">C<input type="radio" name="checkbox1" class="ansvc ans1 box" style="margin-left:6.8px;cursor: pointer;" value=""/><span class="ansc" style="margin-left:12px;"></span></li>
-                        <li style="margin-left:25px;">D<input type="radio" name="checkbox1" class="ansvd ans1 box" style="margin-left:5.6px;cursor: pointer;" value=""/><span class="ansd" style="margin-left:12px;"></span></li>
-                    </ul>
-                    <ul style="list-style:none;margin-top:30px;">
-                        <li style="margin-left:25px;"><span id="quesid2" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
-                        <li style="margin-left:25px;" >A<input type="radio" name="checkbox2" class="ansva ans2 box" style="margin-left:6.1px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansa"></span></li>
-                        <li style="margin-left:25px;">B<input type="radio" name="checkbox2" class="ansvb ans2 box" style="margin-left:7.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansb"></span></li>
-                        <li style="margin-left:25px;">C<input type="radio" name="checkbox2" class="ansvc ans2 box" style="margin-left:6.8px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansc"></span></li>
-                        <li style="margin-left:25px;">D<input type="radio" name="checkbox2" class="ansvd ans2 box" style="margin-left:5.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansd"></span></li>
-                    </ul>
-                    <ul style="list-style:none;margin-top:30px;">
-                        <li style="margin-left:25px;"><span id="quesid3" class="quesid"></span>.&nbsp;<span class="ques"></span></li>
-                        <li style="margin-left:25px;" >A<input type="radio" name="checkbox3" class="ansva ans3 box" style="margin-left:6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansa"></span></li>
-                        <li style="margin-left:25px;">B<input type="radio" name="checkbox3" class="ansvb ans3 box" style="margin-left:7.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansb"></span></li>
-                        <li style="margin-left:25px;">C<input type="radio" name="checkbox3" class="ansvc ans3 box" style="margin-left:6.8px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansc"></span></li>
-                        <li style="margin-left:25px;">D<input type="radio" name="checkbox3" class="ansvd ans3 box" style="margin-left:5.6px;cursor: pointer;" value=""/>&nbsp;&nbsp;<span class="ansd"></span></li>
-                    </ul>
-                    <p class="pss"><input type="submit" value="提交" id="tijiao"></p>
-
-                </div>
-
-            </div>
-
-        </div><!--右侧的结束-->
-    </div>
-    <style type="text/css">
+            </div><!--右侧的结束-->
+        </div>
+        <style type="text/css">
 
         .login_bottom {
             /* clear: both; */
@@ -399,7 +399,7 @@
         <div class="login_bottom">
             <img src="../../../../www.etkqqzhdj.gov.cn/wp-content/themes/dangjian/newstyle/v3/images/dzjg-1.png" tppabs="http://www.etkqqzhdj.gov.cn/wp-content/themes/dangjian/newstyle/v3/images/dzjg-1.png">
             <span><div style="text-align:center;padding:20px 0;font-size:14px;">技术支持　<a href="http://fuwu.yinhaisoft.com" title="智慧党建" target="_blank">智慧党建</a>开发服务集团*mobile:13436570110</br></br></div>
-                    </span>
+            </span>
 
         </div>
     </div>
@@ -465,7 +465,7 @@
                  </div>
          </div>
        </div>
-     </footer>  -->
+   </footer>  -->
 
 </div><!--最大的DIV结束-->
 
@@ -631,7 +631,7 @@
                     }
                     /*if(data==1){
                         $("#wancheng").show();
-                        }*/
+                    }*/
                     if((data)==2){
 
                         $("#zheng2").show();
